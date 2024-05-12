@@ -1,0 +1,16 @@
+syntax = "proto2";
+package proto;
+message Message
+{
+	optional uint64 sendTime = 1;
+    optional uint64 clitTime = 2;
+	optional bytes payload = 3;
+}
+
+service PerfTest
+{
+	rpc Unary(Message) returns (Message){}
+	rpc ClientStreaming(stream Message) returns (Message){}
+	rpc ServerStreaming(Message) returns (stream Message) {}
+	rpc BidStreaming(stream Message) returns (stream Message) {}
+}
